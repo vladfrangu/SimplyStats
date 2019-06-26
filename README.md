@@ -44,6 +44,43 @@ The bot is written in [TypeScript](https://www.typescriptlang.org), using [Disco
     - web
       - The web UI for the bot (soon™️)
 
+## How to run the bot
+
+First thing you'll need is [node.js](https://nodejs.org) with a version greater than 12! Install it using your operating systems instructions.
+
+Clone the repository by using [git](https://git-scm.com/)
+
+```bash
+# Use https if you don't have SSH keys setup
+git clone git@github.com:vladfrangu/SimplyStats.git
+```
+
+Go into the directory for the bot and install all dependencies
+
+```bash
+# cd into the bot directory
+cd SimplyStats
+
+# Or yarn
+npm i
+```
+
+Copy the `config.ts.example` file to `config.ts`, fill in all the values, then run
+
+```bash
+npm run ts:compile
+
+# For yarn users
+
+yarn ts:compile
+```
+
+Then, just run the bot!
+
+```bash
+node .
+```
+
 ## Contributing
 
 Contributing instructions are TBD

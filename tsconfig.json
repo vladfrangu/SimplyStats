@@ -31,6 +31,7 @@
 	},
 	"include": [
 		"modules/**/*",
-		"src/**/*"
+		"core/bot/**/*",
+		"config.ts"
 	]
 }

@@ -1,4 +1,10 @@
 {
 	"extends": "@kcp/lint",
-	"parser": "@typescript-eslint/parser"
+	"parser": "@typescript-eslint/parser",
+	"rules": {
+		"@typescript-eslint/ban-ts-ignore": "off",
+		"@typescript-eslint/no-require-imports": "off",
+		"@typescript-eslint/no-var-requires": "off",
+		"global-require": "off"
+	}
 }

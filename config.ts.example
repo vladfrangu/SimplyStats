@@ -1,0 +1,60 @@
+import { KlasaClientOptions } from 'klasa';
+import { ClientConfig } from 'pg';
+import * as packageJSON from './package.json';
+
+/**
+ * In order to use the bot, copy this file to `config.ts`, fill in all the values and compile by running `npm run ts:compile`
+ */
+
+export const token = 'BOT TOKEN HERE';
+
+export const postgresqlOptions: ClientConfig = {
+	database: 'simplystatus',
+	host: 'localhost',
+	keepAlive: true,
+	user: 'simplystats',
+	password: 'owowhatsthis',
+	port: 1234,
+};
+
+
+export const clientOptions: KlasaClientOptions = {
+	commandEditing: true,
+	commandLogging: true,
+	console: {
+		useColor: true,
+		timestamps: 'DD[:]MM[:]YYYY [at] HH[:]mm[:]ss',
+	},
+	createPiecesFolders: false,
+	noPrefixDM: false,
+	pieceDefaults: {
+		monitors: { ignoreOthers: false },
+	},
+	prefix: 'ss!',
+	prefixCaseInsensitive: true,
+	production: process.env.NODE_ENV === 'production',
+	providers: {
+		default: 'postgresql',
+		postgresql: postgresqlOptions,
+	},
+	readyMessage: (client) => {
+		const { options: { shards } } = client;
+		const internalShardCount = (shards as number[]).length;
+
+		return [
+			`   _____ _                 __      _____ __        __            `,
+			`  / ___/(_)___ ___  ____  / /_  __/ ___// /_____ _/ /___  _______`,
+			`  \\__ \\/ / __ \`__ \\/ __ \\/ / / / /\\__ \\/ __/ __ \`/ __/ / / / ___/`,
+			` ___/ / / / / / / / /_/ / / /_/ /___/ / /_/ /_/ / /_/ /_/ (__  ) `,
+			`/____/_/_/ /_/ /_/ .___/_/\\__, //____/\\__/\\__,_/\\__/\\__,_/____/  `,
+			`                /_/      /____/                                  `,
+			``,
+			`                   Running on version: ${packageJSON.version}							`,
+			`                   Running as: ${client.user!.tag}													`,
+			`                   Guilds on ${internalShardCount} internal shard${internalShardCount === 1 ? '' : 's'}: ${client.guilds.size}`,
+			``,
+		].join('\n');
+	},
+	regexPrefix: /hi/i,
+	schedule: { interval: 1000 },
+};
