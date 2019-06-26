@@ -1,4 +1,4 @@
-# SimplyStats <img src="https://raw.githubusercontent.com/vladfrangu/SimplyStats/master/static/hack_wump_ship.png" align="right" width="30%">
+# <img src="https://cdn.discordapp.com/icons/592776919062413313/8bbb0cd2511a3a2b039777e2e0705a68.png?size=2048" align="left" width="4%"> SimplyStats <img src="https://raw.githubusercontent.com/vladfrangu/SimplyStats/master/static/hack_wump_ship.png" align="right" width="30%">
 
 <div align="center">
   <p>
