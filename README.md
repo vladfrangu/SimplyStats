@@ -1,4 +1,4 @@
-# SimplyStats <img src="https://github.com/vladfrangu/SimplyStats/blob/master/static/hack_wumpus_ship.png?raw=true" align="right" width="30%">
+# SimplyStats <img src="https://raw.githubusercontent.com/vladfrangu/SimplyStats/master/static/hack_wump_ship.png" align="right" width="30%">
 
 <div align="center">
   <p>
