@@ -1,0 +1,4 @@
+{
+	"extends": "@kcp/lint",
+	"parser": "@typescript-eslint/parser"
+}

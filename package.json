@@ -1,23 +1,43 @@
 {
-  "name": "SimplyStats",
+  "name": "simplystats",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Simple bot to get in-depth stats about your servers :: Written for Discord's 0th hackathon",
+  "homepage": "https://github.com/vladfrangu/SimplyStats#readme",
+  "bugs": {
+    "url": "https://github.com/vladfrangu/SimplyStats/issues"
   },
+  "license": "GPL-3",
+  "author": {
+    "name": "SimplyStats Team",
+    "url": "https://github.com/vladfrangu/SimplyStats/graphs/contributors"
+  },
+  "main": "dist/bot/index",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vladfrangu/SimplyStats.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vladfrangu/SimplyStats/issues"
+  "scripts": {
+    "test:lint": "npx eslint --ext ts src/**/*.ts",
+    "build": "npx tsc"
   },
-  "homepage": "https://github.com/vladfrangu/SimplyStats#readme",
+  "engines": {
+    "node": ">= 12.0.0"
+  },
   "dependencies": {
-    "klasa": "^0.4.0"
+    "@elastic/elasticsearch": "^7.1.0",
+    "discord.js": "github:discordjs/discord.js",
+    "klasa": "github:dirigeants/klasa#settings",
+    "pg": "^7.11.0"
+  },
+  "peerDependencies": {
+    "zucc": "^0.1.2"
+  },
+  "devDependencies": {
+    "@kcp/eslint-config-lint": "github:KlasaCommunityPlugins/lint-files",
+    "@types/node": "^12.0.10",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "eslint": "^6.0.1",
+    "typescript": "^3.5.2"
   }
 }

@@ -59,3 +59,15 @@ typings/
 
 # next.js build output
 .next
+
+.vscode
+package-lock.json
+docs
+
+\.vscode/
+\.idea/
+desktop.ini
+dist/
+
+# TODO: are we going only for env values?
+config.ts
