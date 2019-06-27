@@ -1,5 +1,6 @@
 import { KlasaClientOptions } from 'klasa';
-import { ClientConfig } from 'pg';
+import { RPoolConnectionOptions } from 'rethinkdb-ts';
+import { ClientOptions } from '@elastic/elasticsearch';
 import * as packageJSON from './package.json';
 
 /**
@@ -8,15 +9,35 @@ import * as packageJSON from './package.json';
 
 export const token = 'BOT TOKEN HERE';
 
-export const postgresqlOptions: ClientConfig = {
-	database: 'simplystatus',
+/**
+ * RethinkDB options
+ *
+ * Setup a different user than admin for your data's safety!
+ */
+export const rethinkdbOptions: RPoolConnectionOptions = {
 	host: 'localhost',
-	keepAlive: true,
-	user: 'simplystats',
-	password: 'owowhatsthis',
-	port: 1234,
+	port: 20815,
+	db: 'simplystats',
+	user: 'admin',
+	password: '',
+	buffer: 100,
+	max: 10000,
+	pingInterval: 120000,
+	pool: true,
+	silent: true,
+	timeout: 20,
+	timeoutGb: 10000,
 };
 
+export const elasticsearchOptions: ClientOptions = {
+	name: 'simplystats-es',
+	node: 'http://localhost:9200',
+	cloud: {
+		id: 'ss',
+		username: 'simplystats',
+		password: 'owowhatsthis?',
+	},
+};
 
 export const clientOptions: KlasaClientOptions = {
 	commandEditing: true,
@@ -34,8 +55,8 @@ export const clientOptions: KlasaClientOptions = {
 	prefixCaseInsensitive: true,
 	production: process.env.NODE_ENV === 'production',
 	providers: {
-		default: 'postgresql',
-		postgresql: postgresqlOptions,
+		default: 'rethinkdb',
+		rethinkdb: rethinkdbOptions,
 	},
 	readyMessage: (client) => {
 		const { options: { shards } } = client;
@@ -55,6 +76,6 @@ export const clientOptions: KlasaClientOptions = {
 			``,
 		].join('\n');
 	},
-	regexPrefix: /hi/i,
+	regexPrefix: /^((?:hello|hi)? ?(simplystats|ss)[!,\W]?)/i,
 	schedule: { interval: 1000 },
 };

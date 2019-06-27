@@ -2,6 +2,9 @@ import { Constructable } from 'discord.js';
 import { promises as fs } from 'fs';
 import { KlasaClient, Piece, Store } from 'klasa';
 import { join } from 'path';
+import { Client } from '@elastic/elasticsearch';
+
+import { elasticsearchOptions } from '../../../../config';
 
 import ModuleBase from './Module';
 interface ModuleClass {
@@ -13,6 +16,8 @@ const MODULES_PATH = join(__dirname, '../../../../modules');
 const PATHS_TO_ADD = new Set<string>();
 
 export default class StatsClient extends KlasaClient {
+	es = new Client(elasticsearchOptions);
+
 	/**
 	 * Adds a folder to the store's list of folders to load.
 	 * @param store The store to register the directory to
