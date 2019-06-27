@@ -1,0 +1,45 @@
+verison: 2
+jobs:
+    test:
+        working_directory: /opt/bot
+        docker:
+            - image: node:alpine
+        steps:
+            - checkout
+            - setup_remote_docker
+            - run:
+                name: Install system deps
+                command: |
+                    apk --no-cache add git
+            - run:
+                name: Install node deps
+                command: |
+                    npm i
+            - run:
+                name: Lint the code
+                command: |
+                    npm run test:list
+    build:
+        working_directory: /opt/bot
+        docker:
+            - image: docker
+        steps:
+            - checkout
+            - setup_remote_docker
+            - run:
+                name: Build docker image
+                command: |
+                    docker build -t kelwing/SimplyStats .
+            - run:
+                name: Push docker image
+                command: |
+                    docker push kelwing/SimplyStats
+workflows:
+    version: 2
+    main:
+        jobs:
+            - test
+            - build:
+                filters:
+                    tags:
+                        only: /^v\d+\.\d+\.\d+$/
