@@ -7,4 +7,5 @@ const client = new StatsClient({ ...clientOptions, createPiecesFolders: false })
 client.login(token)
 	.catch((err) => {
 		client.console.error(err);
+		process.exit(-1);
 	});

@@ -1,3 +1,4 @@
+/* eslint-disable multiline-comment-style */
 import { KlasaClientOptions } from 'klasa';
 import { RPoolConnectionOptions } from 'rethinkdb-ts';
 import { ClientOptions } from '@elastic/elasticsearch';
@@ -32,11 +33,13 @@ export const rethinkdbOptions: RPoolConnectionOptions = {
 export const elasticsearchOptions: ClientOptions = {
 	name: 'simplystats-es',
 	node: 'http://localhost:9200',
+	/* Remove the comments if you use this
 	cloud: {
 		id: 'ss',
 		username: 'simplystats',
 		password: 'owowhatsthis?',
 	},
+	*/
 };
 
 export const clientOptions: KlasaClientOptions = {
