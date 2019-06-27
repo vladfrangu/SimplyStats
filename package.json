@@ -17,7 +17,7 @@
     "url": "git+https://github.com/vladfrangu/SimplyStats.git"
   },
   "scripts": {
-    "test:lint": "npx eslint --ext ts src/**/*.ts",
+    "test:lint": "npx eslint --ext ts {core,modules}/**/*.ts",
     "ts:compile": "npx tsc"
   },
   "engines": {
