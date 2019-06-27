@@ -1,4 +1,4 @@
-verison: 2
+version: 2
 jobs:
     test:
         working_directory: /opt/bot
