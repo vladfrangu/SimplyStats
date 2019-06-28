@@ -42,23 +42,23 @@ const MONTH_TO_FINISH_DATE = new Map([
 
 const generateCurrentGTE = (type: TimeDuration, next = false) => {
 	const TIME = next ? '59:59.999' : '00:00.000';
-	// Sunday = 0, Monday = 1;
-	const STARTING_DAY = 1;
 	const currentDate = new Date();
 	switch (type) {
 		case 'h': {
-			return `${currentDate.getUTCFullYear()}-${(currentDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${currentDate.getUTCDate()}T${currentDate.getUTCHours()}:${TIME}Z`;
+			return `${currentDate.getUTCFullYear()}-${(currentDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${currentDate.getUTCDate().toString().padStart(2, '0')}T${currentDate.getUTCHours()}:${TIME}Z`;
 		}
 		case 'd': {
-			return `${currentDate.getUTCFullYear()}-${(currentDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${currentDate.getUTCDate()}T${next ? '23' : '00'}:${TIME}Z`;
+			return `${currentDate.getUTCFullYear()}-${(currentDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${currentDate.getUTCDate().toString().padStart(2, '0')}T${next ? '23' : '00'}:${TIME}Z`;
 		}
 		case 'w': {
-			const currentDay = currentDate.getUTCDate();
-			const weekStart = new Date(currentDate.valueOf() - ((currentDay <= 0 ? 7 - STARTING_DAY : currentDay - STARTING_DAY) * 86400000));
-			const weekEnd = new Date(weekStart.valueOf() + (6 * 86400000));
+			const day = currentDate.getUTCDay();
+			const date = currentDate.getUTCDate() - day;
+
+			const weekStart = new Date(currentDate.setUTCDate(date));
+			const weekEnd = new Date(currentDate.setUTCDate(date + 6));
 			return next ?
-				`${weekEnd.getUTCFullYear()}-${weekEnd.getUTCMonth().toString().padStart(2, '0')}-${weekEnd.getUTCDate()}T23:${TIME}Z` :
-				`${weekStart.getUTCFullYear()}-${weekStart.getUTCMonth().toString().padStart(2, '0')}-${weekStart.getUTCDate()}T00:${TIME}Z`;
+				`${weekStart.getUTCFullYear()}-${weekStart.getUTCMonth().toString().padStart(2, '0')}-${weekStart.getUTCDate().toString().padStart(2, '0')}T00:${TIME}Z` :
+				`${weekEnd.getUTCFullYear()}-${weekEnd.getUTCMonth().toString().padStart(2, '0')}-${weekEnd.getUTCDate().toString().padStart(2, '0')}T23:${TIME}Z`;
 		}
 		case 'm': {
 			const currentMonth = currentDate.getUTCMonth();
@@ -68,15 +68,15 @@ const generateCurrentGTE = (type: TimeDuration, next = false) => {
 				if (!(currentYear % 400))
 					endDay += 1;
 			}
-			return `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${next ? endDay : 1}T${next ? '23' : '00'}:${TIME}Z`;
+			return `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${next ? endDay.toString().padStart(2, '0') : '01'}T${next ? '23' : '00'}:${TIME}Z`;
 		}
 		case 'y': {
-			return `${currentDate.getUTCFullYear()}-${next ? '12' : '01'}-${next ? '31' : '1'}T${next ? '23' : '00'}:${TIME}Z}`;
+			return `${currentDate.getUTCFullYear()}-${next ? '12' : '01'}-${next ? '31' : '01'}T${next ? '23' : '00'}:${TIME}Z`;
 		}
 	}
 };
 
-export const ChannelQuery = (timeDuration: TimeDuration, channelID?: string, category = false) => {
+export const ChannelQuery = (timeDuration: TimeDuration, channelID?: string, category = false, getCategories = false) => {
 	const must: any[] = [
 		{
 			range: {
@@ -119,9 +119,9 @@ export const ChannelQuery = (timeDuration: TimeDuration, channelID?: string, cat
 			},
 		},
 		aggs: {
-			channelID: {
+			[getCategories ? 'categoryID' : 'channelID']: {
 				terms: {
-					field: 'channelID.keyword',
+					field: `${getCategories ? 'categoryID' : 'channelID'}.keyword`,
 					size: 6,
 					order: {
 						_count: 'desc',
