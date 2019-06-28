@@ -90,7 +90,7 @@ Contributing instructions are TBD
 Here are the amazing people who are working on this bot in order to bring you the best experience while using our bot:
 
 - [Kelwing#0001](https://github.com/kelwing)
-- [King - Vlad#0721](https://github.com/vladfrangu)
+- [King - Vlad#3621](https://github.com/vladfrangu)
 - [JakeMakesStuff#0001](https://github.com/JakeMakesStuff)
 - [GG142#1420](https://github.com/GilbertGobbels)
 - [codepupper#3621](https://github.com/codepupper)

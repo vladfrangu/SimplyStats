@@ -54,7 +54,7 @@ export const clientOptions: KlasaClientOptions = {
 	pieceDefaults: {
 		monitors: { ignoreOthers: false },
 	},
-	prefix: 'ss!',
+	prefix: 'ss.',
 	prefixCaseInsensitive: true,
 	production: process.env.NODE_ENV === 'production',
 	providers: {
@@ -66,6 +66,7 @@ export const clientOptions: KlasaClientOptions = {
 		const internalShardCount = (shards as number[]).length;
 
 		return [
+			``,
 			`   _____ _                 __      _____ __        __            `,
 			`  / ___/(_)___ ___  ____  / /_  __/ ___// /_____ _/ /___  _______`,
 			`  \\__ \\/ / __ \`__ \\/ __ \\/ / / / /\\__ \\/ __/ __ \`/ __/ / / / ___/`,

@@ -1,7 +1,11 @@
 version: '3'
 services:
     es:
-        image: elasticsearch:7.2.0
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+        environment:
+            - cluster-name=SimplyStats-es
+            - discovery.type=single-node
+            # - ES_TMPDIR=/data/elasticsearch/tmp
     db:
         image: rethinkdb:2.3.6
     bot:

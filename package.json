@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.1.0",
+    "bodybuilder": "^2.2.17",
     "discord.js": "github:discordjs/discord.js",
     "klasa": "github:dirigeants/klasa#settings",
     "rethinkdb-ts": "^2.4.0-rc.15"
