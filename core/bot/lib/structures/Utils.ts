@@ -45,7 +45,7 @@ const generateCurrentGTE = (type: TimeDuration, next = false) => {
 	const currentDate = new Date();
 	switch (type) {
 		case 'h': {
-			return `${currentDate.getUTCFullYear()}-${(currentDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${currentDate.getUTCDate().toString().padStart(2, '0')}T${currentDate.getUTCHours()}:${TIME}Z`;
+			return `${currentDate.getUTCFullYear()}-${(currentDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${currentDate.getUTCDate().toString().padStart(2, '0')}T${currentDate.getUTCHours().toString().padStart(2, '0')}:${TIME}Z`;
 		}
 		case 'd': {
 			return `${currentDate.getUTCFullYear()}-${(currentDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${currentDate.getUTCDate().toString().padStart(2, '0')}T${next ? '23' : '00'}:${TIME}Z`;
@@ -141,3 +141,55 @@ export const ChannelQuery = (timeDuration: TimeDuration, channelID?: string, cat
 		],
 	};
 };
+
+export const UserGrowthQuery = (timeDuration: TimeDuration) => ({
+	sort: [
+		{
+			timestamp: {
+				order: 'desc',
+				unmapped_type: 'boolean',
+			},
+		},
+	],
+	query: {
+		bool: {
+			must: [
+				{
+					range: {
+						timestamp: {
+							format: 'strict_date_optional_time',
+							gte: generateCurrentGTE(timeDuration),
+							lte: generateCurrentGTE(timeDuration, true),
+						},
+					},
+				},
+			],
+			filter: [
+				{
+					match_all: {},
+				},
+			],
+			should: [],
+			must_not: [],
+		},
+	},
+	aggs: {
+		2: {
+			date_histogram: {
+				field: 'timestamp',
+				interval: `1${timeDuration === 'm' ? 'M' : timeDuration}`,
+				time_zone: 'Europe/London',
+				min_doc_count: 1,
+			},
+		},
+	},
+	stored_fields: [
+		'*',
+	],
+	docvalue_fields: [
+		{
+			field: 'timestamp',
+			format: 'date_time',
+		},
+	],
+});

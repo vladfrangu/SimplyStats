@@ -1,6 +1,7 @@
 export const IndexTypes = {
 	MESSAGE_CREATE: 'message_create',
 	REACTION_ADD: 'message_reaction_add',
+	MEMBER_JOIN: 'guild_member_add',
 } as const;
 
 export const EmbedColors = {
@@ -30,4 +31,10 @@ interface AggregationResult {
 export interface ChannelAggregation {
 	channelID: AggregationResult;
 	categoryID: AggregationResult;
+}
+
+export interface UserGrowthAggregation {
+	2: {
+		buckets: Array<{ key_as_string: string; key: number; doc_count: number }>;
+	};
 }

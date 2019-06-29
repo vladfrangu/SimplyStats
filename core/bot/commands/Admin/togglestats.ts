@@ -10,8 +10,7 @@ export default class extends Command {
 			description: 'Enable or disable specific statistics collections',
 			permissionLevel: 4,
 			runIn: ['text'],
-			subcommands: true,
-			usage: '<message>',
+			usage: '<message|userGrowth>',
 		});
 	}
 

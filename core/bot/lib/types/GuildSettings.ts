@@ -4,4 +4,7 @@ export namespace GuildSettings {
 
 	export const GuildEmojiStatistics = 'statistics.emojis';
 	export type GuildEmojiStatistics = boolean;
+
+	export const UserGrowthStatistics = 'statistics.userGrowth';
+	export type UserGrowthStatistics = boolean;
 }
