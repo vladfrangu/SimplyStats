@@ -12,7 +12,7 @@ export default class extends Command {
 			aliases: ['commands', 'cmd', 'cmds'],
 			guarded: true,
 			description: (language) => language.get('COMMAND_HELP_DESCRIPTION'),
-			usage: '(Command:command)'
+			usage: '(Command:command)',
 		});
 
 		this.createCustomResolver('command', (arg, possible, message) => {
@@ -110,5 +110,4 @@ export default class extends Command {
 
 		return commands;
 	}
-
-};
+}
