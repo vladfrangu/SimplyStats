@@ -40,18 +40,9 @@ workflows:
     main:
         jobs:
             - test
-            - build:
-                requires:
-                    - test
-                filters:
-                    branches:
-                        ignore: /.*/
-                    tags:
-                        only: /^v\d+\.\d+\.\d+$/
             - deploy:
                 requires:
                     - test
-                    - build
                 filters:
                     branches:
                         ignore: /.*/
