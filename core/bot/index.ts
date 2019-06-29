@@ -7,6 +7,7 @@ StatsClient.defaultGuildSchema
 	.add('statistics', (statistics) => statistics
 		.add('message', 'boolean')
 		.add('emojis', 'boolean')
+		.add('userGrowth', 'boolean')
 	);
 
 KlasaClient.defaultPermissionLevels
