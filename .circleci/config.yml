@@ -25,6 +25,10 @@ jobs:
             - image: ubuntu:xenial
         steps:
             - run:
+                name: Install SSH
+                command: |
+                    apt-get update && apt-get -y install ssh
+            - run:
                 name: Save SSH Key
                 command: |
                     echo $SSH_KEY > prod.pem
