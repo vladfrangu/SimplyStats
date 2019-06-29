@@ -24,15 +24,13 @@ jobs:
         docker:
             - image: ubuntu:xenial
         steps:
+            - add_ssh_keys:
+                fingerprints:
+                    - "51:d7:2a:3c:88:c1:9e:fd:af:39:b0:28:2c:fe:84:b3"
             - run:
                 name: Install SSH
                 command: |
                     apt-get update && apt-get -y install ssh
-            - run:
-                name: Save SSH Key
-                command: |
-                    echo $SSH_KEY > prod.pem
-                    chmod 400 prod.pem
             - run:
                 name: Deploy to Production Server
                 command: |
