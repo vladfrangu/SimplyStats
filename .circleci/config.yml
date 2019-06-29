@@ -19,22 +19,6 @@ jobs:
                 name: Lint the code
                 command: |
                     npm run test:lint
-    build:
-        working_directory: /opt/bot
-        docker:
-            - image: docker
-        steps:
-            - checkout
-            - setup_remote_docker
-            - run:
-                name: Build docker image
-                command: |
-                    docker build -t quay.io/kelwing/simplystats:$CIRCLE_SHA1 .
-            - run:
-                name: Push docker image
-                command: |
-                    docker login quay.io -u $DOCKER_USER -p $DOCKER_PWD
-                    docker push quay.io/kelwing/simplystats:$CIRCLE_SHA1
     deploy:
         working_directory: /opt/bot
         docker:
@@ -47,8 +31,9 @@ jobs:
             - run:
                 name: Deploy to Production Server
                 command: |
+                    ssh -p prod.pem $SSH_USER@$SSH_HOST "git -C SimplyStats pull"
                     ssh -p prod.pem $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose stop"
-                    ssh -p prod.pem $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose pull bot"
+                    ssh -p prod.pem $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose build"
                     ssh -p prod.pem $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose start"
 workflows:
     version: 2

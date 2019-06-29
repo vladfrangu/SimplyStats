@@ -11,6 +11,8 @@ services:
         image: rethinkdb:2.3.6
     bot:
         build: .
+        env_file:
+            - bot_vars.env
         depends_on:
             - es
             - db
