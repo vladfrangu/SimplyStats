@@ -4,6 +4,8 @@ import { EmbedColors } from '../../lib/types/Constants';
 import * as packageJSON from '../../../../package.json';
 
 export default class extends Command {
+	description = 'Ping pong, the bot is on, but does it respond?';
+
 	async run(message: KlasaMessage) {
 		const msg = await message.send(
 			new MessageEmbed()

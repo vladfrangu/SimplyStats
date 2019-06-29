@@ -6,6 +6,7 @@ export const IndexTypes = {
 export const EmbedColors = {
 	RESPONSE: 0x43B581,
 	WAITING: 0x9ECDF2,
+	INFO: 0x3669FA,
 } as const;
 
 export type TimeDuration = 'h' | 'd' | 'w' | 'm' | 'y';

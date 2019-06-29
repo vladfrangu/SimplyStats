@@ -9,10 +9,11 @@ export default class extends Command {
 	constructor(store: CommandStore, file: string[], directory: string) {
 		super(store, file, directory, {
 			aliases: ['messageCount', 'message-count', 'mc'],
-			requiredSettings: [GuildSettings.MessageStatistics],
-			runIn: ['text'],
+			description: "Shows the servers's messages sent so far",
 			permissionLevel: 4,
 			requiredPermissions: ['EMBED_LINKS'],
+			requiredSettings: [GuildSettings.MessageStatistics],
+			runIn: ['text'],
 			usage: '[categories] [text:textChannel|category:categoryChannel] [h|d|m|y]',
 			usageDelim: ' ',
 		});
