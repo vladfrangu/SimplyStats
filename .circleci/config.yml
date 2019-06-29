@@ -32,6 +32,7 @@ jobs:
                 name: Save SSH Key
                 command: |
                     echo $SSH_KEY > prod.pem
+                    chmod 400 prod.pem
             - run:
                 name: Deploy to Production Server
                 command: |
