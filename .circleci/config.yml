@@ -35,9 +35,9 @@ jobs:
                 name: Deploy to Production Server
                 command: |
                     ssh -i prod.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_HOST "git -C SimplyStats pull"
-                    ssh -i prod.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose stop"
+                    ssh -i prod.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose stop bot"
                     ssh -i prod.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose build"
-                    ssh -i prod.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose start"
+                    ssh -i prod.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose up -d --no-deps bot"
 workflows:
     version: 2
     main:
