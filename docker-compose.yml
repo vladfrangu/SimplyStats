@@ -5,6 +5,7 @@ services:
         environment:
             - cluster-name=SimplyStats-es
             - discovery.type=single-node
+            - xpack.ml.enabled=false
             # - ES_TMPDIR=/data/elasticsearch/tmp
     db:
         image: rethinkdb:2.3.6
