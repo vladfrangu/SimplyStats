@@ -6,6 +6,7 @@ import { Permissions } from 'discord.js';
 StatsClient.defaultGuildSchema
 	.add('statistics', (statistics) => statistics
 		.add('message', 'boolean')
+		.add('emojis', 'boolean')
 	);
 
 KlasaClient.defaultPermissionLevels
@@ -15,7 +16,11 @@ KlasaClient.defaultPermissionLevels
 	}, { fetch: true });
 
 // Use Raven?
-const client = new StatsClient({ ...clientOptions, createPiecesFolders: false });
+const client = new StatsClient({
+	...clientOptions,
+	createPiecesFolders: false,
+	restTimeOffset: 0,
+});
 
 client.login(token)
 	.catch((err) => {

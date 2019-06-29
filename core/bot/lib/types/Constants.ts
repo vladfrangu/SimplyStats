@@ -11,6 +11,8 @@ export const EmbedColors = {
 
 export type TimeDuration = 'h' | 'd' | 'w' | 'm' | 'y';
 
+export type StatsType = 'message';
+
 export interface IndexSearchResults<T = any, TAggrResults extends any = undefined> {
 	took: number;
 	timed_out: boolean;
