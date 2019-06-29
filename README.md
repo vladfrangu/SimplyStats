@@ -55,6 +55,8 @@ The bot is written in [TypeScript](https://www.typescriptlang.org), using [Disco
 
 First thing you'll need is [node.js](https://nodejs.org) with a version greater than 12! Install it using your operating systems instructions.
 
+You'll also want to get [RethinkDB](https://www.rethinkdb.com/) and [ElasticSearch](https://www.elastic.co/). We also have a `docker-compose` file if you want to use Docker for hosting the bot.
+
 Clone the repository by using [git](https://git-scm.com/)
 
 ```bash
@@ -86,6 +88,12 @@ Then, just run the bot!
 
 ```bash
 node .
+```
+
+If you're using Docker and Docker Compose, you just need to run
+
+```bash
+docker-compose up
 ```
 
 ## Contributing
