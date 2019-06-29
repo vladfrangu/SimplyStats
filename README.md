@@ -24,6 +24,11 @@
       <img src="https://img.shields.io/github/package-json/v/vladfrangu/SimplyStats.svg" alt="Version">
     </a>
   </p>
+  <p>
+    <a href="https://discord.gg/aKdCbpn">
+      <img src="https://discordapp.com/api/v6/guilds/592776919062413313/embed.png?style=banner2" alt="Discord">
+    </a>
+  </p>
 </div>
 
 ## About
