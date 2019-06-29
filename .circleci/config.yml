@@ -29,11 +29,27 @@ jobs:
             - run:
                 name: Build docker image
                 command: |
-                    docker build -t kelwing/SimplyStats .
+                    docker build -t quay.io/kelwing/simplystats:$CIRCLE_SHA1 .
             - run:
                 name: Push docker image
                 command: |
-                    docker push kelwing/SimplyStats
+                    docker login quay.io -u $DOCKER_USER -p $DOCKER_PWD
+                    docker push quay.io/kelwing/simplystats:$CIRCLE_SHA1
+    deploy:
+        working_directory: /opt/bot
+        docker:
+            - image: ubuntu:xenial
+        steps:
+            - run:
+                name: Save SSH Key
+                command: |
+                    echo $SSH_KEY > prod.pem
+            - run:
+                name: Deploy to Production Server
+                command: |
+                    ssh -p prod.pem $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose stop"
+                    ssh -p prod.pem $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose pull bot"
+                    ssh -p prod.pem $SSH_USER@$SSH_HOST "cd SimplyStats; docker-compose start"
 workflows:
     version: 2
     main:
@@ -42,6 +58,15 @@ workflows:
             - build:
                 requires:
                     - test
+                filters:
+                    branches:
+                        ignore: /.*/
+                    tags:
+                        only: /^v\d+\.\d+\.\d+$/
+            - deploy:
+                requires:
+                    - test
+                    - build
                 filters:
                     branches:
                         ignore: /.*/
