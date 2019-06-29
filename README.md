@@ -32,6 +32,8 @@
 It allows you to build in-depth statistics about your server, from user growth
 to messages sent per hour and much much more.
 
+Invite the bot to your Discord Guild by going [here](https://discordapp.com/oauth2/authorize?client_id=592778743139926033&scope=bot&permissions=19456)!
+
 The bot is written in [TypeScript](https://www.typescriptlang.org), using [Discord.js](https://discord.js.org/#/docs/main/master/general/welcome) and [Klasa](https://klasa.js.org/#/docs/klasa/settings/Getting%20Started/GettingStarted). It is split into two main parts:
 
 - **modules**
