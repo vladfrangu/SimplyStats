@@ -29,7 +29,7 @@
     "discord.js": "github:discordjs/discord.js",
     "klasa": "github:dirigeants/klasa#settings",
     "rethinkdb-ts": "^2.4.0-rc.15",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.3"
   },
   "peerDependencies": {
     "zucc": "^0.1.2"
