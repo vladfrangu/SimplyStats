@@ -920,7 +920,7 @@ restore-cursor@^3.1.0:
     onetime "^5.1.0"
     signal-exit "^3.0.2"
 
-rethinkdb-ts@^2.4.0-rc.15:
+rethinkdb-ts@^2.4.0-rc.16:
   version "2.4.0-rc.16"
   resolved "https://registry.yarnpkg.com/rethinkdb-ts/-/rethinkdb-ts-2.4.0-rc.16.tgz#9fdeab069867e15dce69c9486abbbd7b16145d73"
   integrity sha512-IeUfGk92dzF6Ii9thn0FIcr7rYOai1IIK6NaCoBgNUCIckoP4oDd/T2zXYrBsQCHw1gC97Ol6YP/rL0ssIbRdw==
