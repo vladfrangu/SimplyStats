@@ -6,8 +6,8 @@ export default class extends Event {
 
 	async run() {
 		for (const command of ['invite', 'blacklist', 'conf', 'userconf', 'stats'])
-			this.client.commands.get(command).unload();
+			this.client.commands.get(command)!.unload();
 		if (process.env.NODE_ENV === 'production')
-			this.client.commands.get('eval').unload();
+			this.client.commands.get('eval')!.unload();
 	}
 }
