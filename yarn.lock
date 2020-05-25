@@ -37,6 +37,7 @@
 
 "@kcp/eslint-config-lint@github:KlasaCommunityPlugins/lint-files":
   version "0.0.1"
+  uid "621fa86b3ebfc84a65d1bcc5c2084b1934bbf630"
   resolved "https://codeload.github.com/KlasaCommunityPlugins/lint-files/tar.gz/621fa86b3ebfc84a65d1bcc5c2084b1934bbf630"
 
 "@klasa/request-handler@^0.0.3":
