@@ -42,7 +42,7 @@
     "@types/ws": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
-    "eslint": "^6.0.1",
+    "eslint": "^7.11.0",
     "typescript": "^3.5.3"
   }
 }
